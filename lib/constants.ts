@@ -1,4 +1,4 @@
-import { Instagram, Mail, Linkedin, FileText, Twitter } from "lucide-react";
+import { Instagram, Mail, Linkedin, FileText, Twitter, Phone } from "lucide-react";
 
 // Social links configuration
 export const socialLinks = [
@@ -19,6 +19,12 @@ export const socialLinks = [
         href: "https://www.linkedin.com/in/yourusername",
         label: "LinkedIn",
         delay: 0.3,
+    },
+    {
+        Icon: Phone,
+        href: "tel:8076132128",
+        label: "Phone",
+        delay: 0.4,
     },
 ];
 

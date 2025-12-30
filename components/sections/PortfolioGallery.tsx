@@ -31,9 +31,32 @@ export default function PortfolioGallery() {
 
     return (
         <section className="transition-all duration-300 w-full px-2 sm:px-4">
-            <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold dark:text-white text-gray-900 mb-3 lg:mb-4 transition-colors duration-300 tracking-wide uppercase px-2 sm:px-0">
-                Gallery
-            </h2>
+            <div className="flex items-center justify-between mb-3 lg:mb-4 px-2 sm:px-0">
+                <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold dark:text-white text-gray-900 transition-colors duration-300 tracking-wide uppercase">
+                    Gallery
+                </h2>
+                <a
+                    href="https://drive.google.com/drive/folders/1W7sIob3hvjTxPAhk5j_T5u8yuyToDKPr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+                >
+                    View All
+                    <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                    </svg>
+                </a>
+            </div>
             <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative overflow-hidden">
                 <div className="w-full h-full touch-pan-x">
                     <CircularGallery
@@ -42,7 +65,7 @@ export default function PortfolioGallery() {
                         textColor={theme === 'dark' ? '#ffffff' : '#000000'}
                         borderRadius={0.05}
                         scrollEase={0.02}
-                        scrollSpeed={2}
+                        scrollSpeed={3}
                         font="bold 16px Inter, sans-serif"
                         onReady={setGalleryHandle}
                     />
@@ -99,7 +122,7 @@ export default function PortfolioGallery() {
                     ))}
                 </div>
             </div>
-            
+
             {/* Mobile swipe hint */}
             <p className="md:hidden text-sm text-center text-gray-500 dark:text-gray-400 mt-2">
                 Swipe left or right to navigate
