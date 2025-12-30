@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://xtmani.com/sitemap.xml
+Sitemap: https://portfolio-zeta-ten-gnajypdxz1.vercel.app/sitemap.xml
 
 # Disallow admin or private paths (if any)
 # Disallow: /admin/

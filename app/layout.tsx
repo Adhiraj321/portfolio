@@ -11,23 +11,23 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://xtmani.com'),
+  metadataBase: new URL('https://portfolio-zeta-ten-gnajypdxz1.vercel.app/'),
   title: {
     default: 'Kanishk Trikha',
     template: '%s | Kanishk Trikha'
   },
   description: 'Marketing & Commerce Professional specializing in Strategic Communication, Data Management, and Creative Campaigns. Passionate about driving results through innovative marketing strategies.',
   keywords: ['Marketing Professional', 'Commerce', 'Strategic Communication', 'Data Management', 'Content Creation', 'Marketing Campaigns', 'Delhi University', 'Kanishk Trikha', 'Portfolio', 'B.Com'],
-  authors: [{ name: 'Kanishk Trikha', url: 'https://xtmani.com' }],
+  authors: [{ name: 'Kanishk Trikha', url: 'https://portfolio-zeta-ten-gnajypdxz1.vercel.app/' }],
   creator: 'Kanishk Trikha',
   publisher: 'Kanishk Trikha',
   alternates: {
-    canonical: 'https://xtmani.com',
+    canonical: 'https://portfolio-zeta-ten-gnajypdxz1.vercel.app/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://xtmani.com',
+    url: 'https://portfolio-zeta-ten-gnajypdxz1.vercel.app/',
     title: 'Kanishk Trikha | Marketing & Commerce Professional',
     description: 'Marketing & Commerce Professional specializing in Strategic Communication, Data Management, and Creative Campaigns.',
     siteName: 'Kanishk Trikha Portfolio',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kanishk Trikha | Marketing & Commerce Professional',
     description: 'Marketing & Commerce Professional specializing in Strategic Communication, Data Management, and Creative Campaigns.',
-    images: ['https://xtmani.com/og-image.webp'],
+    images: ['https://portfolio-zeta-ten-gnajypdxz1.vercel.app/og-image.webp'],
     creator: '@_bjkjff235__k',
   },
   robots: {
@@ -70,8 +70,8 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Kanishk Trikha',
-  url: 'https://xtmani.com',
-  image: 'https://xtmani.com/profile.webp',
+  url: 'https://portfolio-zeta-ten-gnajypdxz1.vercel.app/',
+  image: 'https://portfolio-zeta-ten-gnajypdxz1.vercel.app/profile.webp',
   jobTitle: 'Marketing & Commerce Professional',
   description: 'Marketing & Commerce Professional specializing in Strategic Communication, Data Management, and Creative Campaigns.',
   address: {
