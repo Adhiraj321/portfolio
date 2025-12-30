@@ -61,7 +61,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
   },
 }
 
@@ -103,6 +102,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={outfit.variable} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="theme-color" content="#ffffff" />
         {/* JSON-LD Structured Data */}
         <Script
           id="json-ld"
