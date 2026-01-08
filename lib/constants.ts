@@ -16,7 +16,7 @@ export const socialLinks = [
     },
     {
         Icon: Linkedin,
-        href: "https://www.linkedin.com/in/yourusername",
+        href: "https://www.linkedin.com/in/kanishk-trikha-307029247",
         label: "LinkedIn",
         delay: 0.3,
     },
@@ -228,9 +228,9 @@ export const marketingCampaigns = [
         learnings: "Short-form video content drives 5x more engagement than static posts"
     },
     {
-        title: "Valentine's Day Campaign",
+        title: "Mens's Day Campaign",
         category: "Social Media Video",
-        video: "/videos/valentines-day.mp4",
+        video: "/videos/mens-day.mp4",
         client: "Social Media Campaign",
         objective: "Create engaging Valentine's Day content",
         strategy: "Emotional storytelling with trending audio and visuals",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
 import { marketingCampaigns } from '@/lib/constants';
@@ -25,20 +25,43 @@ const galleryItems = marketingCampaigns
     }));
 
 export default function PortfolioGallery() {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
     const [galleryHandle, setGalleryHandle] = useState<{
         scrollLeft: () => void;
         scrollRight: () => void;
     } | null>(null);
+
+    // Wait for theme to be resolved on client
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Pure white text with black stroke for visibility on both themes
+    const textColor = '#ffffff';
+
+    // Don't render gallery until theme is resolved
+    if (!mounted) {
+        return (
+            <section className="transition-all duration-300 w-full px-2 sm:px-4">
+                <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative overflow-hidden">
+                    <div className="w-full h-full flex items-center justify-center dark:bg-white/5 bg-black/5 rounded-lg">
+                        <div className="animate-pulse dark:text-white/50 text-black/50">Loading gallery...</div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className="transition-all duration-300 w-full px-2 sm:px-4">
             <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative overflow-hidden">
                 <div className="w-full h-full touch-pan-x">
                     <CircularGallery
+                        key={`gallery-${resolvedTheme}`}
                         items={galleryItems}
                         bend={1}
-                        textColor={theme === 'dark' ? 'white' : '#000000'}
+                        textColor={textColor}
                         borderRadius={0.05}
                         scrollEase={0.02}
                         scrollSpeed={3}

@@ -92,33 +92,6 @@ const collegeRoles = [
             "Served as Head of Conference Affairs for RLAC MUN 2025"
         ],
         skills: ["Team Leadership", "Graphic Design", "Event Management", "Canva"]
-    },
-    {
-        company: "The Placement Cell, Ram Lal Anand College",
-        role: "Placement Coordinator",
-        duration: "Sep 2023 - Jul 2024",
-        type: "Leadership Role",
-        location: "Delhi, India",
-        description: "Coordinated placement activities and student engagement.",
-        responsibilities: [
-            "Coordinated placement drives and company interactions",
-            "Created web content and marketing materials for placement opportunities",
-            "Designed graphics for placement-related communications"
-        ],
-        skills: ["Marketing", "Web Content Writing", "Graphic Design"]
-    },
-    {
-        company: "AWAAZ - The English Debating Society",
-        role: "Executive Member",
-        duration: "Feb 2023 - May 2024",
-        type: "Society Member",
-        location: "Ram Lal Anand College",
-        description: "Active participation in debate events and society activities.",
-        responsibilities: [
-            "Participated in organizing and executing debate competitions",
-            "Contributed to society's growth and event management"
-        ],
-        skills: ["Event Management", "Communication", "Teamwork"]
     }
 ];
 

@@ -6,8 +6,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const moreWorkImages = [
     "/more/WhatsApp Image 2026-01-08 at 18.16.46.jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.47.jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.48 (1).jpeg",
     "/more/WhatsApp Image 2026-01-08 at 18.16.49.jpeg",
     "/more/WhatsApp Image 2026-01-08 at 18.16.49 (1).jpeg",
     "/more/WhatsApp Image 2026-01-08 at 18.16.49 (2).jpeg",
@@ -25,6 +23,8 @@ export function MoreWorkSection() {
     const totalItems = moreWorkImages.length;
     const radius = 400; // Radius of the circular path
     const angleStep = 360 / totalItems;
+
+    const normalizedIndex = ((currentIndex % totalItems) + totalItems) % totalItems;
 
     useEffect(() => {
         if (!carouselRef.current) return;
@@ -46,7 +46,7 @@ export function MoreWorkSection() {
                 z: z,
                 scale: scale,
                 opacity: opacity,
-                rotateY: -angle * 0.5,
+                rotateY: -angle,
                 duration: 0.8,
                 ease: "power2.out",
             });
@@ -56,8 +56,8 @@ export function MoreWorkSection() {
     useEffect(() => {
         // Auto-play
         autoPlayRef.current = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % totalItems);
-        }, 4000);
+            setCurrentIndex((prev) => prev + 1);
+        }, 3000);
 
         return () => {
             if (autoPlayRef.current) clearInterval(autoPlayRef.current);
@@ -66,16 +66,27 @@ export function MoreWorkSection() {
 
     const goToPrevious = () => {
         if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-        setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
+        setCurrentIndex((prev) => prev - 1);
     };
 
     const goToNext = () => {
         if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-        setCurrentIndex((prev) => (prev + 1) % totalItems);
+        setCurrentIndex((prev) => prev + 1);
+    };
+
+    const handleItemClick = (index: number) => {
+        if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+
+        // Calculate the shortest path to the clicked item
+        const diff = (index - normalizedIndex + totalItems) % totalItems;
+        // If diff is larger than half the circle, go the other way
+        const shortestDiff = diff > totalItems / 2 ? diff - totalItems : diff;
+
+        setCurrentIndex(prev => prev + shortestDiff);
     };
 
     return (
-        <div className="relative w-full overflow-hidden py-8 bg-white dark:bg-transparent rounded-xl">
+        <div className="relative w-full overflow-hidden py-8  dark:bg-transparent rounded-xl">
             {/* 3D Carousel Container */}
             <div
                 ref={carouselRef}
@@ -92,10 +103,7 @@ export function MoreWorkSection() {
                                 transformStyle: "preserve-3d",
                                 backfaceVisibility: "hidden",
                             }}
-                            onClick={() => {
-                                if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-                                setCurrentIndex(index);
-                            }}
+                            onClick={() => handleItemClick(index)}
                         >
                             <img
                                 src={image}
@@ -104,7 +112,7 @@ export function MoreWorkSection() {
                             />
 
                             {/* Overlay for non-active items */}
-                            {index !== currentIndex && (
+                            {index !== normalizedIndex && (
                                 <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
                             )}
                         </div>
@@ -122,9 +130,19 @@ export function MoreWorkSection() {
                     <ChevronLeft className="w-6 h-6" />
                 </button>
 
-                {/* Slide Indicator */}
-                <div className="bg-black/70 dark:bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium shadow-sm">
-                    {currentIndex + 1} / {totalItems}
+                {/* Dot Indicators between buttons */}
+                <div className="flex items-center gap-1.5">
+                    {moreWorkImages.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handleItemClick(index)}
+                            className={`h-2 rounded-full transition-all duration-300 ${index === normalizedIndex
+                                ? "bg-blue-600 dark:bg-blue-400 w-6"
+                                : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 w-2"
+                                }`}
+                            aria-label={`Go to slide ${index + 1}`}
+                        />
+                    ))}
                 </div>
 
                 <button
@@ -134,24 +152,6 @@ export function MoreWorkSection() {
                 >
                     <ChevronRight className="w-6 h-6" />
                 </button>
-            </div>
-
-            {/* Dot Indicators */}
-            <div className="flex justify-center gap-2 mt-6">
-                {moreWorkImages.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => {
-                            if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-                            setCurrentIndex(index);
-                        }}
-                        className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
-                            ? "bg-blue-600 dark:bg-blue-400 w-8"
-                            : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 w-2"
-                            }`}
-                        aria-label={`Go to slide ${index + 1}`}
-                    />
-                ))}
             </div>
         </div>
     );

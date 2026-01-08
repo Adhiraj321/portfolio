@@ -33,7 +33,7 @@ function createTextTexture(
     gl: GL,
     text: string,
     font: string = 'bold 30px monospace',
-    color: string = 'black'
+    color: string = 'white'
 ): { texture: Texture; width: number; height: number } {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -45,14 +45,23 @@ function createTextTexture(
     const fontSize = getFontSize(font);
     const textHeight = Math.ceil(fontSize * 1.2);
 
-    canvas.width = textWidth + 20;
-    canvas.height = textHeight + 20;
+    // Add extra padding for stroke
+    canvas.width = textWidth + 30;
+    canvas.height = textHeight + 30;
 
     context.font = font;
-    context.fillStyle = color;
     context.textBaseline = 'middle';
     context.textAlign = 'center';
     context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw black stroke/outline first
+    context.strokeStyle = '#000000';
+    context.lineWidth = 4;
+    context.lineJoin = 'round';
+    context.strokeText(text, canvas.width / 2, canvas.height / 2);
+
+    // Draw white fill on top
+    context.fillStyle = color;
     context.fillText(text, canvas.width / 2, canvas.height / 2);
 
     const texture = new Texture(gl, { generateMipmaps: false });
