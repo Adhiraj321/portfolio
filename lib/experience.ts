@@ -1,20 +1,68 @@
-// Detailed Experience Data
-export const detailedExperience = [
+// Full-time Roles
+const fullTimeExperience = [
     {
         company: "Adsparkx",
-        role: "Process Coordinator",
+        role: "Social Media Executive",
         duration: "Jun 2025 - Present",
         type: "Full-time",
         location: "On-site",
         description: "Cross-functional coordination between business and creative teams, content strategy, and operations management.",
         responsibilities: [
-            "Coordinated seamless communication between business and creative teams, ensuring project alignment across stakeholders",
-            "Developed and executed social media strategy including copywriting, graphic design, and video editing",
-            "Created monthly content pieces across multiple platforms while maintaining brand consistency",
-            "Maintained creative team documentation and reporting systems, ensuring accountability and on-time project delivery"
+            "Fully handled and executed the organization's end-to-end social media strategy, including copywriting, graphic design, and video editing",
+            "Developed monthly content across multiple platforms while maintaining consistent brand identity, increasing total impressions from 40K to 65K+",
+            "Designed branding collateral and marketing materials for internal initiatives and company events, supporting internal communications and brand alignment"
         ],
         skills: ["Team Coordination", "Social Media Strategy", "Content Creation", "Project Management"]
+    }
+];
+
+// Internships
+const internships = [
+    {
+        company: "Bajaj Capital Ltd.",
+        role: "Product Marketing Intern",
+        duration: "Jun 2024 - Aug 2024",
+        type: "Internship",
+        location: "Hybrid",
+        description: "Digital marketing campaigns and market research for financial services.",
+        responsibilities: [
+            "Worked on Ideation, Promotion, Scheduling & Execution of Digital Marketing Campaigns during the two month period",
+            "Designed and Analyzed a Market Research Survey to examine Brand Awareness & understand Customer Buying Behavior"
+        ],
+        skills: ["Marketing Strategy", "Analytical Skills", "Product Marketing", "Market Research"]
     },
+    {
+        company: "Blackberrys Menswear",
+        role: "Ecommerce & Marketing Intern",
+        duration: "Jul 2024 - Aug 2024",
+        type: "Internship",
+        location: "On-site",
+        description: "E-commerce operations and marketing analysis under VP of E-commerce.",
+        responsibilities: [
+            "Worked directly under the Vice President of E-commerce, attending daily meetings to gain firsthand experience in e-commerce and marketing operations, as well as supporting the team with various Excel-based tasks",
+            "Designed and analyzed a market research and competitive analysis survey, providing insights for strategic improvements",
+            "Analyzed and compared company policies, including drafting the return policy to enhance customer satisfaction"
+        ],
+        skills: ["Analytical Skills", "Marketing", "Microsoft Excel", "Research", "Policy Analysis"]
+    },
+    {
+        company: "BTGF Foundation, Malviya Nagar",
+        role: "Research and Data Management Intern",
+        duration: "Jul 2024 - Sep 2024",
+        type: "Internship",
+        location: "Delhi, India - Hybrid",
+        description: "Large-scale data analysis and management for constituency research.",
+        responsibilities: [
+            "Worked directly under MLA Somnath Bharti, conducting demographic analysis on 50,000+ datasets across wards and segmenting data for 145 booths using Excel and SQL to generate strategic insights",
+            "Resolved 2,000+ public issues escalated to Delhi Jal Board, improving response times and community satisfaction through data-driven problem-solving",
+            "Developed core competencies in demographic analysis, data validation, and community engagement while addressing grassroots challenges"
+        ],
+        skills: ["Project Management", "Data Analysis", "Microsoft Excel", "SQL"]
+    }
+];
+
+// College Leadership & Society Roles
+const collegeRoles = [
     {
         company: "The Placement Cell, Ram Lal Anand College",
         role: "Head of Media & Marketing",
@@ -46,51 +94,6 @@ export const detailedExperience = [
         skills: ["Team Leadership", "Graphic Design", "Event Management", "Canva"]
     },
     {
-        company: "Bajaj Capital Ltd.",
-        role: "Product Marketing Intern",
-        duration: "Jun 2024 - Aug 2024",
-        type: "Internship",
-        location: "Hybrid",
-        description: "Digital marketing campaigns and market research for financial services.",
-        responsibilities: [
-            "Worked on Ideation, Promotion, Scheduling & Execution of Digital Marketing Campaigns",
-            "Designed and Analyzed Market Research Survey to examine Brand Awareness & Customer Buying Behavior",
-            "Contributed to product marketing strategy and campaign optimization"
-        ],
-        skills: ["Marketing Strategy", "Analytical Skills", "Product Marketing", "Market Research"]
-    },
-    {
-        company: "Blackberrys Menswear",
-        role: "Ecommerce & Marketing Intern",
-        duration: "Jul 2024 - Aug 2024",
-        type: "Internship",
-        location: "On-site",
-        description: "E-commerce operations and marketing analysis under VP of E-commerce.",
-        responsibilities: [
-            "Worked directly under VP of E-commerce, attending daily meetings for hands-on experience",
-            "Designed and analyzed market research and competitive analysis survey",
-            "Analyzed and compared company policies, drafted return policy to enhance customer satisfaction",
-            "Supported team with Excel-based tasks and data analysis"
-        ],
-        skills: ["Analytical Skills", "Marketing", "Microsoft Excel", "Research", "Policy Analysis"]
-    },
-    {
-        company: "BTGF Foundation, Malviya Nagar",
-        role: "Research and Data Management Intern",
-        duration: "Jul 2024 - Sep 2024",
-        type: "Internship",
-        location: "Delhi, India - Hybrid",
-        description: "Large-scale data analysis and management for constituency research.",
-        responsibilities: [
-            "Focused on large-scale resident data analysis across 3 wards under MLA Somnath Bharti",
-            "Processed and organized 50,000+ entries into 145 booth-wise Excel sheets using advanced functions and SQL",
-            "Ensured data accuracy through validation, sorting, and filtering tools",
-            "Analyzed booth-wise demographics for 10,000+ households",
-            "Identified patterns in 2000+ Delhi Jal Board complaints for strategic decision-making"
-        ],
-        skills: ["Project Management", "Data Analysis", "Microsoft Excel", "SQL"]
-    },
-    {
         company: "The Placement Cell, Ram Lal Anand College",
         role: "Placement Coordinator",
         duration: "Sep 2023 - Jul 2024",
@@ -118,6 +121,16 @@ export const detailedExperience = [
         skills: ["Event Management", "Communication", "Teamwork"]
     }
 ];
+
+// Combined Experience (Full-time → Internships → College Roles)
+export const detailedExperience = [
+    ...fullTimeExperience,
+    ...internships,
+    ...collegeRoles
+];
+
+// Export internships separately for potential separate display
+export const detailedInternships = internships;
 
 // Detailed Achievements & Awards
 export const detailedAchievements = [

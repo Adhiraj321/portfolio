@@ -15,12 +15,14 @@ const CircularGallery = dynamic(() => import('@/components/CircularGallery'), {
     )
 });
 
-// Convert marketing campaigns to CircularGallery format
-const galleryItems = marketingCampaigns.map(campaign => ({
-    image: campaign.video || campaign.image || '',
-    text: campaign.title,
-    isVideo: !!campaign.video
-}));
+// Convert marketing campaigns to CircularGallery format - VIDEOS ONLY
+const galleryItems = marketingCampaigns
+    .filter(campaign => !!campaign.video) // Only include items with videos
+    .map(campaign => ({
+        image: campaign.video || '',
+        text: campaign.title,
+        isVideo: true
+    }));
 
 export default function PortfolioGallery() {
     const { theme } = useTheme();
@@ -31,38 +33,12 @@ export default function PortfolioGallery() {
 
     return (
         <section className="transition-all duration-300 w-full px-2 sm:px-4">
-            <div className="flex items-center justify-between mb-3 lg:mb-4 px-2 sm:px-0">
-                <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold dark:text-white text-gray-900 transition-colors duration-300 tracking-wide uppercase">
-                    Gallery
-                </h2>
-                <a
-                    href="https://drive.google.com/drive/folders/1W7sIob3hvjTxPAhk5j_T5u8yuyToDKPr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-                >
-                    View All
-                    <svg
-                        className="w-4 h-4 ml-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                    </svg>
-                </a>
-            </div>
             <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative overflow-hidden">
                 <div className="w-full h-full touch-pan-x">
                     <CircularGallery
                         items={galleryItems}
                         bend={1}
-                        textColor={theme === 'dark' ? '#ffffff' : '#000000'}
+                        textColor={theme === 'dark' ? 'white' : '#000000'}
                         borderRadius={0.05}
                         scrollEase={0.02}
                         scrollSpeed={3}

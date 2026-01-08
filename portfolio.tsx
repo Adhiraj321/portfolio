@@ -6,10 +6,10 @@ import { useTheme } from "@/hooks/useTheme";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { EducationExperienceSection } from "@/components/sections/EducationExperienceSection";
-import PortfolioGallery from "@/components/sections/PortfolioGallery";
 import { AchievementsSection } from "@/components/sections/AchievementsSection";
 import { MetricsSection } from "@/components/sections/MetricsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { GallerySection } from "@/components/sections/GallerySection";
 import { Toast } from "./components/toast";
 import { PortfolioStructuredData } from "@/components/PortfolioStructuredData";
 
@@ -74,8 +74,8 @@ export default function Portfolio() {
 
             <MetricsSection />
             <ServicesSection />
+            <GallerySection />
             <EducationExperienceSection />
-            <PortfolioGallery />
             <AchievementsSection />
           </div>
         </div>
