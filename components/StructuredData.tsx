@@ -7,7 +7,7 @@ export function StructuredData() {
         "name": "Kanishk Trikha",
         "jobTitle": "Marketing & Commerce Professional",
         "url": "https://kanishktrikha.vercel.app",
-        "image": "https://kanishktrikha.vercel.app/profile.jpeg",
+        "image": "https://kanishktrikha.vercel.app/profile.webp",
         "sameAs": [
             "https://www.instagram.com/_bjkjff235__k",
             "https://www.linkedin.com/in/kanishk-trikha"

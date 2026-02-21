@@ -5,13 +5,14 @@ import { gsap } from "gsap";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const moreWorkImages = [
-    "/more/WhatsApp Image 2026-01-08 at 18.16.46.jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.49.jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.49 (1).jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.49 (2).jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.49 (3).jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.50.jpeg",
-    "/more/WhatsApp Image 2026-01-08 at 18.16.50 (1).jpeg",
+    "/more/WhatsApp Image 2026-01-08 at 18.16.46.webp",
+    "/more/WhatsApp Image 2026-01-08 at 18.16.49.webp",
+    "/more/WhatsApp Image 2026-01-08 at 18.16.49 (1).webp",
+    "/more/WhatsApp Image 2026-01-08 at 18.16.49 (2).webp",
+    "/more/WhatsApp Image 2026-01-08 at 18.16.49 (3).webp",
+    "/more/WhatsApp Image 2026-01-08 at 18.16.50.webp",
+    "/more/WhatsApp Image 2026-01-08 at 18.16.50 (1).webp",
+    "/more/ADX BINGO KANISHK (1).webp"
 ];
 
 export function MoreWorkSection() {

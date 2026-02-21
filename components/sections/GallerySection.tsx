@@ -53,9 +53,20 @@ export function GallerySection() {
 
             {/* More of My Work Subsection */}
             <div>
-                <h3 className="text-xl lg:text-2xl font-bold dark:text-white text-gray-900 mb-4 lg:mb-6 transition-colors duration-300 tracking-wide">
-                    MORE OF MY WORK
-                </h3>
+                <div className="flex items-center justify-between mb-4 lg:mb-6">
+                    <h3 className="text-xl lg:text-2xl font-bold dark:text-white text-gray-900 transition-colors duration-300 tracking-wide">
+                        MORE OF MY WORK
+                    </h3>
+                    <a
+                        href="https://drive.google.com/drive/folders/1W7sIob3hvjTxPAhk5j_T5u8yuyToDKPr?hl=nl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs lg:text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200 font-medium"
+                    >
+                        <span>View All</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                </div>
                 <MoreWorkSection />
             </div>
         </section>

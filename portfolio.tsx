@@ -64,7 +64,6 @@ export default function Portfolio() {
         <HeroSection
           theme={theme}
           onThemeToggle={toggleTheme}
-          onContactClick={() => setIsContactModalOpen(true)}
         />
 
         {/* Main Content */}

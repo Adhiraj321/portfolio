@@ -8,12 +8,15 @@ const slideshowImages = [
     "/slideshow/WhatsApp Image 2026-01-08 at 17.36.58.webp",
     "/slideshow/WhatsApp Image 2026-01-08 at 17.36.59.webp",
     "/slideshow/WhatsApp Image 2026-01-08 at 17.36.59 (1).webp",
-    "/slideshow/WhatsApp Image 2026-01-08 at 17.36.59 (2).jpeg",
+    "/slideshow/WhatsApp Image 2026-01-08 at 17.36.59 (2).webp",
     "/slideshow/WhatsApp Image 2026-01-08 at 17.37.00.webp",
     "/slideshow/WhatsApp Image 2026-01-08 at 17.37.00 (1).webp",
-    "/slideshow/WhatsApp Image 2026-02-09 at 19.36.23.jpeg",
-    "/slideshow/WhatsApp Image 2026-02-11 at 19.21.54.jpeg",
-    "/slideshow/WhatsApp Image 2026-02-11 at 19.21.54 (1).jpeg",
+    "/slideshow/WhatsApp Image 2026-02-09 at 19.36.23.webp",
+    "/slideshow/WhatsApp Image 2026-02-11 at 19.21.54.webp",
+    "/slideshow/WhatsApp Image 2026-02-11 at 19.21.54 (1).webp",
+    "/slideshow/1.webp",
+    "/slideshow/2.webp",
+    "/slideshow/3.webp",
 ];
 
 export function CarouselSection() {
