@@ -453,10 +453,13 @@ class App {
     boundOnWheel!: (e: Event) => void;
     boundOnTouchDown!: (e: MouseEvent | TouchEvent) => void;
     boundOnTouchMove!: (e: MouseEvent | TouchEvent) => void;
-    boundOnTouchUp!: () => void;
+    boundOnTouchUp!: (e: MouseEvent | TouchEvent) => void;
 
     isDown: boolean = false;
     start: number = 0;
+    downX: number = 0;
+    downY: number = 0;
+    onItemClick?: (index: number) => void;
 
     constructor(
         container: HTMLElement,
@@ -596,6 +599,8 @@ class App {
         this.isDown = true;
         this.scroll.position = this.scroll.current;
         this.start = 'touches' in e ? e.touches[0].clientX : e.clientX;
+        this.downX = this.start;
+        this.downY = 'touches' in e ? e.touches[0].clientY : e.clientY;
     }
 
     onTouchMove(e: MouseEvent | TouchEvent) {
@@ -605,9 +610,37 @@ class App {
         this.scroll.target = (this.scroll.position ?? 0) + distance;
     }
 
-    onTouchUp() {
+    onTouchUp(e?: MouseEvent | TouchEvent) {
+        const wasDown = this.isDown;
         this.isDown = false;
         this.onCheck();
+        if (!wasDown || !e || !this.onItemClick) return;
+
+        // Treat as a click only if the pointer barely moved and ended inside the gallery
+        const point = 'changedTouches' in e ? e.changedTouches[0] : e;
+        if (!point) return;
+        if (Math.hypot(point.clientX - this.downX, point.clientY - this.downY) > 6) return;
+        const rect = this.container.getBoundingClientRect();
+        const px = point.clientX - rect.left;
+        const py = point.clientY - rect.top;
+        if (px < 0 || py < 0 || px > rect.width || py > rect.height) return;
+        if (!this.container.contains(e.target as Node)) return;
+
+        let hit = -1;
+        let best = Infinity;
+        this.medias.forEach((m, i) => {
+            const cx = (m.plane.position.x / this.viewport.width + 0.5) * this.screen.width;
+            const cy = (0.5 - m.plane.position.y / this.viewport.height) * this.screen.height;
+            const hw = (m.plane.scale.x / this.viewport.width) * this.screen.width / 2;
+            const hh = (m.plane.scale.y / this.viewport.height) * this.screen.height / 2;
+            const dx = Math.abs(px - cx);
+            const dy = Math.abs(py - cy);
+            if (dx <= hw && dy <= hh && dx < best) {
+                best = dx;
+                hit = i;
+            }
+        });
+        if (hit >= 0) this.onItemClick(hit % (this.medias.length / 2));
     }
 
     onWheel(e: Event) {
@@ -718,10 +751,13 @@ export default function CircularGallery({
     font = 'bold 30px Figtree',
     scrollSpeed = 2,
     scrollEase = 0.05,
-    onReady
-}: CircularGalleryProps & { onReady?: (handle: CircularGalleryHandle) => void }) {
+    onReady,
+    onItemClick
+}: CircularGalleryProps & { onReady?: (handle: CircularGalleryHandle) => void; onItemClick?: (index: number) => void }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const appRef = useRef<App | null>(null);
+    const clickRef = useRef(onItemClick);
+    clickRef.current = onItemClick;
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -735,6 +771,7 @@ export default function CircularGallery({
             scrollEase
         });
         appRef.current = app;
+        app.onItemClick = (i) => clickRef.current?.(i);
 
         if (onReady) {
             onReady({

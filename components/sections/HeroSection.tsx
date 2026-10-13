@@ -64,7 +64,7 @@ export function HeroSection({ theme, onThemeToggle }: HeroSectionProps) {
                         Kanishk Trikha
                     </h1>
                     <p className="text-base sm:text-lg lg:text-xl dark:text-gray-300 text-gray-600 transition-colors duration-300">
-                        Marketing & Commerce Professional
+                        Creative Strategy & Brand Storytelling
                     </p>
                 </div>
 
@@ -77,7 +77,7 @@ export function HeroSection({ theme, onThemeToggle }: HeroSectionProps) {
 
                 {/* Tagline */}
                 <p className="dark:text-gray-400 text-gray-600 leading-relaxed transition-colors duration-300 text-center lg:text-left text-sm lg:text-base max-w-sm">
-                    Passionate about Marketing, Commerce, and Strategic Communication with hands-on experience in data-driven campaigns and team leadership
+                   I bring together brand thinking, creative strategy and storytelling to turn insights into ideas that connect. My experience spans social media, content strategy and creative execution
                 </p>
 
                 {/* Resume Button + Social Links */}

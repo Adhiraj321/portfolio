@@ -502,33 +502,33 @@ export const keyMetrics = [
 // What I Offer
 export const services = [
     {
-        title: "Marketing Strategy & Planning",
-        description: "Develop comprehensive marketing strategies aligned with business objectives",
+        title: "Brand & Creative Strategy",
+        description: "Audience insights, positioning, and messaging, translated into content pillars, campaign concepts, and strategic storytelling",
         icon: "target"
     },
     {
         title: "Social Media Management",
-        description: "Create and execute engaging social media campaigns across platforms",
+        description: "Platform strategy, content planning and execution",
         icon: "social"
     },
     {
-        title: "Content Creation & Design",
-        description: "Design eye-catching visuals and compelling content that resonates",
+        title: "Copywriting & Brand Communication",
+        description: "Brand narratives, campaign copy and audience-first communication",
         icon: "design"
     },
     {
-        title: "Data Analysis & Reporting",
-        description: "Analyze campaign performance and provide actionable insights",
+        title: "Creative Development & Design",
+        description: "Visual concepts, social creatives and content production",
         icon: "analytics"
     },
     {
-        title: "Event Marketing",
-        description: "Plan and execute successful event marketing campaigns",
+        title: "Performance Analysis & Reporting",
+        description: "Content insights, performance tracking and actionable recommendations",
         icon: "event"
     },
     {
-        title: "Team Leadership",
-        description: "Lead and mentor teams to achieve marketing excellence",
+        title: "AI-Assisted Ideation & Content Development",
+        description: "Using AI tools to explore ideas, develop concepts and streamline creative workflows",
         icon: "leadership"
     }
 ];

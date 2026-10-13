@@ -7,7 +7,6 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { EducationExperienceSection } from "@/components/sections/EducationExperienceSection";
 import { AchievementsSection } from "@/components/sections/AchievementsSection";
-import { MetricsSection } from "@/components/sections/MetricsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { GallerySection } from "@/components/sections/GallerySection";
 import { Toast } from "./components/toast";
@@ -70,8 +69,6 @@ export default function Portfolio() {
         <div className="w-full lg:w-3/5 xl:w-[62%] 2xl:w-[65%] p-4 sm:p-6 lg:p-8 xl:p-10 overflow-y-auto">
           <div className="max-w-4xl mx-auto lg:mx-0 space-y-12 lg:space-y-14">
             <AboutSection />
-
-            <MetricsSection />
             <ServicesSection />
             <GallerySection />
             <EducationExperienceSection />

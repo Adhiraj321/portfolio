@@ -2,28 +2,28 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Images } from "lucide-react";
+import carouselSetsData from "@/lib/carouselSets.json";
+import { CarouselModal } from "./CarouselModal";
 
-const slideshowImages = [
-    "/slideshow/WhatsApp Image 2026-01-08 at 17.36.58.webp",
-    "/slideshow/WhatsApp Image 2026-01-08 at 17.36.59.webp",
-    "/slideshow/WhatsApp Image 2026-01-08 at 17.36.59 (1).webp",
-    "/slideshow/WhatsApp Image 2026-01-08 at 17.36.59 (2).webp",
-    "/slideshow/WhatsApp Image 2026-01-08 at 17.37.00.webp",
-    "/slideshow/WhatsApp Image 2026-01-08 at 17.37.00 (1).webp",
-    "/slideshow/WhatsApp Image 2026-02-09 at 19.36.23.webp",
-    "/slideshow/WhatsApp Image 2026-02-11 at 19.21.54.webp",
-    "/slideshow/WhatsApp Image 2026-02-11 at 19.21.54 (1).webp",
-    "/slideshow/1.webp",
-    "/slideshow/2.webp",
-    "/slideshow/3.webp",
-];
+interface CarouselSet {
+    title: string;
+    cover: string;
+    images: string[];
+}
+
+const carouselSets = carouselSetsData as CarouselSet[];
+const slideshowImages = carouselSets.map((c) => c.cover);
 
 export function CarouselSection() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
     const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
     const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+    const [openSet, setOpenSet] = useState<number | null>(null);
+    const openRef = useRef(false);
+    openRef.current = openSet !== null;
+    const dragged = useRef(false);
 
     const totalItems = slideshowImages.length;
 
@@ -44,11 +44,13 @@ export function CarouselSection() {
         if (autoPlayRef.current) clearInterval(autoPlayRef.current);
         const x = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
         touchStartX.current = x;
+        dragged.current = false;
     };
 
     const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
         const x = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
         touchEndX.current = x;
+        if (touchStartX.current && Math.abs(touchStartX.current - x) > 10) dragged.current = true;
     };
 
     const handleTouchEnd = () => {
@@ -127,7 +129,7 @@ export function CarouselSection() {
     useEffect(() => {
         // Auto-play
         autoPlayRef.current = setInterval(() => {
-            setCurrentIndex((prev) => prev + 1);
+            if (!openRef.current) setCurrentIndex((prev) => prev + 1);
         }, 4000);
 
         return () => {
@@ -147,6 +149,16 @@ export function CarouselSection() {
 
     const handleItemClick = (index: number) => {
         if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+        if (dragged.current) {
+            dragged.current = false;
+            return;
+        }
+
+        // Clicking the focused slide opens its full set in a modal
+        if (index === normalizedIndex) {
+            setOpenSet(index);
+            return;
+        }
 
         // Shortest path click navigation
         const diff = (index - normalizedIndex + totalItems) % totalItems;
@@ -209,12 +221,18 @@ export function CarouselSection() {
                             {/* Main Image */}
                             <img
                                 src={image}
-                                alt={`Gallery ${index + 1}`}
+                                alt={carouselSets[index].title}
                                 className="relative z-10 w-full h-full object-cover"
                             />
 
                             {/* Reflection/Shine effect */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                            {/* Slide count badge */}
+                            <div className="absolute z-20 top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium">
+                                <Images className="w-3 h-3" />
+                                {carouselSets[index].images.length}
+                            </div>
 
                             {/* Active State Highlight/Dim */}
                             <div className={`absolute inset-0 transition-all duration-500 ${index === normalizedIndex ? "bg-transparent ring-0" : "bg-black/30 backdrop-blur-[1px]"}`} />
@@ -222,6 +240,11 @@ export function CarouselSection() {
                     ))}
                 </div>
             </div>
+
+            <CarouselModal
+                set={openSet !== null ? carouselSets[openSet] : null}
+                onClose={() => setOpenSet(null)}
+            />
         </section>
     );
 }
