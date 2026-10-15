@@ -28,3 +28,6 @@ next-env.d.tspublic/videos/backup/original_*
 public/videos/original_*
 public/videos/original_*
 public/videos/backup/original_*
+
+.vercel
+.env*
