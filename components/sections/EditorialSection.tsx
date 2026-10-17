@@ -39,7 +39,7 @@ export function EditorialSection() {
                     { i: 1, img: "/editorial/magazine-pulse3.webp", alt: "Adsparkx Pulse Issue 03 cover" },
                 ].map((c) => (
                     <button key={c.i} onClick={() => setActive(c.i)} className={cardClass} aria-label={`Open ${items[c.i].title}`}>
-                        <img src={c.img} alt={c.alt} loading="lazy" className="w-full h-auto block" />
+                        <img src={c.img} alt={c.alt} loading="lazy" className="w-full aspect-[9/16] object-cover block" />
                         <div className={overlayClass}>
                             <span className={pillClass}>
                                 <Expand className="w-4 h-4" /> View
