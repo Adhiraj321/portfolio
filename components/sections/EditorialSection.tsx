@@ -5,6 +5,8 @@ import { Expand, Play } from "lucide-react";
 import { DocViewerModal, ViewerItem } from "./DocViewerModal";
 
 const driveFolder = "https://drive.google.com/drive/folders/1d_agslQ5NhqSmitYoWubGrlFA7rAbjYX?usp=sharing";
+// Opens the full-length video in Google Drive's media player
+const inductionVideoLink = "https://drive.google.com/file/d/1ju3m08ztuN3hDs_k3Hb4874i2b9UZHhG/view";
 const magazineDesc =
     "The quarterly flagship Magazine of Adsparkx featuring the various events, happenings and other miscellaneous sections in the company. Managed and executed by me end to end.";
 const inductionDesc = "Concept, Strategy, Script writing and Shooting done end to end by me.";
@@ -49,7 +51,13 @@ export function EditorialSection() {
                 ))}
 
                 {/* Induction video: live muted preview, click to watch the full-length videos */}
-                <button onClick={() => setActive(2)} className={`${cardClass} col-span-2 lg:col-span-1`} aria-label="Watch the full induction videos">
+                <a
+                    href={inductionVideoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${cardClass} col-span-2 lg:col-span-1`}
+                    aria-label="Watch the full induction video on Google Drive"
+                >
                     <video
                         src="/editorial/induction-v2.mp4"
                         poster="/editorial/induction-v2.jpg"
@@ -65,7 +73,7 @@ export function EditorialSection() {
                             <Play className="w-4 h-4" /> Watch full video
                         </span>
                     </div>
-                </button>
+                </a>
             </div>
 
             <ol className="space-y-5">
