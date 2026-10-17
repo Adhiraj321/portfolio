@@ -6,23 +6,33 @@ import { ChevronLeft, ChevronRight, Images } from "lucide-react";
 import carouselSetsData from "@/lib/carouselSets.json";
 import { CarouselModal } from "./CarouselModal";
 
-interface CarouselSet {
+export interface CarouselSet {
     title: string;
     cover: string;
     images: string[];
 }
 
-const carouselSets = carouselSetsData as CarouselSet[];
-const slideshowImages = carouselSets.map((c) => c.cover);
+interface CarouselSectionProps {
+    /** Slides shown in the 3D carousel (defaults to the carousel post sets) */
+    sets?: CarouselSet[];
+    /** What the modal shows when a slide is opened. Defaults to the slide's own set. */
+    getModal?: (index: number) => { set: CarouselSet; start: number };
+    /** Show an image-count badge on each slide */
+    showCount?: boolean;
+}
 
-export function CarouselSection() {
+const defaultSets = carouselSetsData as CarouselSet[];
+
+export function CarouselSection({ sets = defaultSets, getModal, showCount = true }: CarouselSectionProps) {
+    const carouselSets = sets;
+    const slideshowImages = carouselSets.map((c) => c.cover);
     const [currentIndex, setCurrentIndex] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
     const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
     const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
-    const [openSet, setOpenSet] = useState<number | null>(null);
+    const [open, setOpen] = useState<{ set: CarouselSet; start: number } | null>(null);
     const openRef = useRef(false);
-    openRef.current = openSet !== null;
+    openRef.current = open !== null;
     const dragged = useRef(false);
 
     const totalItems = slideshowImages.length;
@@ -156,7 +166,7 @@ export function CarouselSection() {
 
         // Clicking the focused slide opens its full set in a modal
         if (index === normalizedIndex) {
-            setOpenSet(index);
+            setOpen(getModal ? getModal(index) : { set: carouselSets[index], start: 0 });
             return;
         }
 
@@ -229,10 +239,10 @@ export function CarouselSection() {
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                             {/* Slide count badge */}
-                            <div className="absolute z-20 top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium">
+                            {showCount && <div className="absolute z-20 top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium">
                                 <Images className="w-3 h-3" />
                                 {carouselSets[index].images.length}
-                            </div>
+                            </div>}
 
                             {/* Active State Highlight/Dim */}
                             <div className={`absolute inset-0 transition-all duration-500 ${index === normalizedIndex ? "bg-transparent ring-0" : "bg-black/30 backdrop-blur-[1px]"}`} />
@@ -242,8 +252,9 @@ export function CarouselSection() {
             </div>
 
             <CarouselModal
-                set={openSet !== null ? carouselSets[openSet] : null}
-                onClose={() => setOpenSet(null)}
+                set={open?.set ?? null}
+                startIndex={open?.start ?? 0}
+                onClose={() => setOpen(null)}
             />
         </section>
     );

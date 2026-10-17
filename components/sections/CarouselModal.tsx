@@ -6,10 +6,11 @@ import { Modal } from "./Modal";
 
 interface CarouselModalProps {
     set: { title: string; images: string[] } | null;
+    startIndex?: number;
     onClose: () => void;
 }
 
-export function CarouselModal({ set, onClose }: CarouselModalProps) {
+export function CarouselModal({ set, startIndex = 0, onClose }: CarouselModalProps) {
     const [index, setIndex] = useState(0);
     const touchX = useRef<number | null>(null);
     // Keep the last set so the content doesn't vanish during the exit animation
@@ -19,8 +20,8 @@ export function CarouselModal({ set, onClose }: CarouselModalProps) {
     const total = current?.images.length ?? 0;
 
     useEffect(() => {
-        if (set) setIndex(0);
-    }, [set]);
+        if (set) setIndex(startIndex);
+    }, [set, startIndex]);
 
     const prev = useCallback(() => setIndex((i) => (i - 1 + total) % total), [total]);
     const next = useCallback(() => setIndex((i) => (i + 1) % total), [total]);

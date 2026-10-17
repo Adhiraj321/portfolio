@@ -3,6 +3,7 @@
 import { ExternalLink } from "lucide-react";
 import { CarouselSection } from "./CarouselSection";
 import { ReelsSection } from "./ReelsSection";
+import { StaticsSection } from "./StaticsSection";
 import { EditorialSection } from "./EditorialSection";
 import { BrandStrategySection } from "./BrandStrategySection";
 
@@ -34,6 +35,12 @@ export function GallerySection() {
                     </a>
                 </div>
                 <ReelsSection />
+            </div>
+
+            {/* Static & Creatives */}
+            <div>
+                <h3 className={`${h3Class} mb-4 lg:mb-6`}>Static &amp; Creatives</h3>
+                <StaticsSection />
             </div>
 
             {/* Carousel */}
